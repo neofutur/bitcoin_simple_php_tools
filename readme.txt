@@ -16,7 +16,8 @@
     `use_date` timestamp NOT NULL default '0000-00-00 00:00:00'
   ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-2. Copy "user/casimir-conf.php.example" to "user/casimir-conf.php" and edit the configuration settings
+2. Copy "user/casimir-conf.php.example" to "user/casimir-conf.php" and edit
+the configuration settings ( + new option for getting the page title )
 
 3. Rename "htaccess" to ".htaccess" according to your settings
 
