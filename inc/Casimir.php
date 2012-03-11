@@ -29,7 +29,7 @@ class Casimir {
     	  }
 	}
 
-  function handleRequest() i
+  function handleRequest() 
   {
 	if (preg_match("#^.*/\??([^=]+)$#i", $_SERVER['REQUEST_URI'], $regs)) {
 	  $this->short = mysql_real_escape_string($regs[1]);
