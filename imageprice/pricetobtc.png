@@ -1,10 +1,7 @@
 <?php
 
-define('PUN_ROOT', './');
-require PUN_ROOT.'include/common.php';
+require_once ("../lib/mtgoxrate.php");
 
-// Load the index.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/index.php';
 
 $signtype = $_GET['type'];
 
