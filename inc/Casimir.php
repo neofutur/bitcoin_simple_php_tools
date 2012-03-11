@@ -8,54 +8,58 @@ class Casimir {
 	public $ok;
 	public $access_key;
 
-	function __construct() {
+	function __construct() 
+	{
 	  $this->version = '1.1';
-    mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or die('Could not connect to database');
-    mysql_select_db(MYSQL_DATABASE) or die('Could not select database');
-    $current_dir = dirname($_SERVER['PHP_SELF']);
-    if ($current_dir == '/') $current_dir = '';
-    $this->base_url = 'http://'.$_SERVER['SERVER_NAME'].$current_dir.'/';
-    $this->short = '';
-    $this->title_page = '';
-    $this->msg = '';
-    $this->ok = true;
-    $this->access_key = '';
-    if (isset($_GET['access_key'])) {
-      $this->access_key = $_GET['access_key'];
-    } elseif (isset($_POST['access_key'])) {
-      $this->access_key = $_POST['access_key'];
-    }
+	  mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or die('Could not connect to database');
+	  mysql_select_db(MYSQL_DATABASE) or die('Could not select database');
+	  $current_dir = dirname($_SERVER['PHP_SELF']);
+	  if ($current_dir == '/') $current_dir = '';
+	  $this->base_url = 'http://'.$_SERVER['SERVER_NAME'].$current_dir.'/';
+	  $this->short = '';
+	  $this->title_page = '';
+	  $this->msg = '';
+	  $this->ok = true;
+	  $this->access_key = '';
+	  if (isset($_GET['access_key'])) {
+	    $this->access_key = $_GET['access_key'];
+	  } elseif (isset($_POST['access_key'])) 
+	  {
+	      $this->access_key = $_POST['access_key'];
+    	  }
 	}
 
-  function handleRequest() {
-		if (preg_match("#^.*/\??([^=]+)$#i", $_SERVER['REQUEST_URI'], $regs)) {
-		  $this->short = mysql_real_escape_string($regs[1]);
-		} else {
-		  $this->short = '';
-		}
-		if ($this->short != '' && $this->short != basename($_SERVER['PHP_SELF'])) {
-		  if ($location = $this->getLong($this->short)) {
-		  	$this->updateUses($this->short);
-		    header('Status: 301 Moved Permanently', false, 301);
-		    header('Location: '.$location);
-		    exit;
-		  } else {
-		    $this->ok = false;
-		    $this->msg = 'Sorry, but this short URL isn\'t in our database.';
-		  }
-		}
-		
-		if (defined('ACCESS_KEY') && ACCESS_KEY != '' && ACCESS_KEY != $this->access_key) {
-		  $this->ok = false;
-		  $this->msg = 'This Casimir instance is protected, you need an access key!';
-		} else {
-		  if (isset($_POST['long'])) {
-		    list($this->ok, $this->short, $this->msg) = $this->addUrl($_POST['long'], isset($_POST['short']) && !is_null($_POST['short']) && $_POST['short'] != 'null' ? $_POST['short'] : ''); 
-		  } elseif (isset($_GET['long'])) {
-		    list($this->ok, $this->short, $this->msg) = $this->addUrl($_GET['long'], isset($_GET['short']) && !is_null($_GET['short']) && $_GET['short'] != 'null' ? $_GET['short'] : ''); 
-		  }
-		}
+  function handleRequest() i
+  {
+	if (preg_match("#^.*/\??([^=]+)$#i", $_SERVER['REQUEST_URI'], $regs)) {
+	  $this->short = mysql_real_escape_string($regs[1]);
+	} else {
+	  $this->short = '';
+	}
+	if ($this->short != '' && $this->short != basename($_SERVER['PHP_SELF'])) {
+	  if ($location = $this->getLong($this->short)) {
+	  	$this->updateUses($this->short);
+	    header('Status: 301 Moved Permanently', false, 301);
+	    header('Location: '.$location);
+	    exit;
+	  } else {
+	    $this->ok = false;
+	    $this->msg = 'Sorry, but this short URL isn\'t in our database.';
+	  }
+	}
+	
+	if (defined('ACCESS_KEY') && ACCESS_KEY != '' && ACCESS_KEY != $this->access_key) {
+	  $this->ok = false;
+	  $this->msg = 'This Casimir instance is protected, you need an access key!';
+	} else {
+	  if (isset($_POST['long'])) {
+	    list($this->ok, $this->short, $this->msg) = $this->addUrl($_POST['long'], isset($_POST['short']) && !is_null($_POST['short']) && $_POST['short'] != 'null' ? $_POST['short'] : ''); 
+	  } elseif (isset($_GET['long'])) {
+	    list($this->ok, $this->short, $this->msg) = $this->addUrl($_GET['long'], isset($_GET['short']) && !is_null($_GET['short']) && $_GET['short'] != 'null' ? $_GET['short'] : ''); 
+	  }
+	}
   }
+
 
   function showForm() {
     if ($this->msg != '') {

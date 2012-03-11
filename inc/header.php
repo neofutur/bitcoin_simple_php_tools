@@ -14,6 +14,7 @@
 </head>
 
 <body onload="document.getElementById('long').focus();">
+	<?php include("inc/perso.php"); ?>
 	<div id="main">
 		<h1><a href="<?php echo $casimir->base_url; ?>"> <?php echo NAME ; ?></a></h1>
 		<h2> <?php echo TITLE ; ?></h2>
