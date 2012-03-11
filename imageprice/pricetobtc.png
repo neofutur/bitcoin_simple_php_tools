@@ -1,6 +1,7 @@
 <?php
 
 require_once ( dirname(__FILE__) . "/../lib/mtgoxrate.php");
+require_once ( dirname(__FILE__) . "/../lib/btcprice_from_currency.php");
 
 if ( $_GET['usdprice'] )
 {
