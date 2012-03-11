@@ -5,9 +5,13 @@ require_once ( dirname(__FILE__) . "/../lib/btcprice_from_currency.php");
 
 if ( $_GET  )
 {
- if ( isset( $_GET['usdprice'] ) )
- {
-  $fromprice = $_GET['usdprice'];
+ if ( isset( $_GET['u'] ) )
+ {$fromprice = $_GET['u']; 
+  if ( is_numeric( $fromprice ) ) 
+  {$fromcurrency = "USD"; $message=""; }
+ }
+ else if ( isset( $_GET['usdprice'] ) )
+ {$fromprice = $_GET['usdprice'];
   if ( is_numeric( $fromprice ) )
   {
    $fromcurrency = "USD";
@@ -15,7 +19,14 @@ if ( $_GET  )
   }
   else $message = "badprice";
  }
- if ( isset ($_GET['eurprice'] ) )
+ else if ( isset ($_GET['e'] ) )
+ {$fromprice = $_GET['e'];
+  if ( is_numeric( $fromprice ) )
+  {
+   $fromcurrency = "EUR"; $message="";
+  }
+ }
+ else if ( isset ($_GET['eurprice'] ) )
  {
   $fromprice = $_GET['eurprice'];
   if ( is_numeric( $fromprice ) )
@@ -25,6 +36,7 @@ if ( $_GET  )
   }
   else $message = "badprice";
  }
+ else $message = "badprice";
 }
 else $message = "badprice";
 
