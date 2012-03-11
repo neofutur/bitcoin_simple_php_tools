@@ -2,23 +2,29 @@
 
 require_once ( dirname(__FILE__) . "/../lib/mtgoxrate.php");
 
+if ( $_GET['usdprice'] )
+{
+ if ( is_int( $usdprice ) )
+ {
+  $fromprice = $_GET['usdprice'];
+  $fromcurrency = "USD";
+ }
+ else $message = "badprice";
 
-$signtype = $_GET['type'];
+}
+if ( $_GET['eurprice'] )
+{
+ if ( is_int( $eurprice ) )
+ {
+  $fromprice = $_GET['eurprice'];
+  $fromcurrency = "EUR";
+ }
+ else $message = "badprice";
 
-if ( ! $signtype || $signtype =='' ){ $signtype = 1; }
-if ( $signtype <1 || $signtype > 9 ) { $signtype = 1; }
-
-$result = $db->query('SELECT COUNT(id)-1 FROM '.$db->prefix.'users') or error('Unable to fetch total user count', __FILE__, __LINE__, $db->error());
-$stats['total_users'] = $db->result($result);
-
-$result = $db->query('SELECT id, username FROM '.$db->prefix.'users ORDER BY registered DESC LIMIT 1') or error('Unable to fetch newest registered user', __FILE__, __LINE__, $db->error());
-$stats['last_user'] = $db->fetch_assoc($result);
-
-$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
-
-
-
+}
+if ( $message != "badprice" )
+  $message = btcprice_from_currency( $fromcurrency, $fromprice );
+ 
 
 header("Content-type: image/png");
 $im = @imagecreate(460, 100)
@@ -29,9 +35,7 @@ $background_color = imagecolorallocate($image, 231, 247, 215);
 $text_color = imagecolorallocate($image, 100, 100, 100);
 $text_color2 = imagecolorallocate($image, 0, 0, 225);
 $shado_color = imagecolorallocate($image, 178,178,178);
-imagestring($image, 15, 190, 8,  "Total Members : $stats[total_users]", $text_color);
-imagestring($image, 15, 190, 22,  "Total Topics  : $stats[total_topics]", $text_color2);
-imagestring($image, 15, 190, 38,  "Total Posts   : $stats[total_posts]", $text_color);
+imagestring($image, 15, 190, 8, $message, $text_color);
 imagepng($image);
 imagedestroy($image);
 ?>
