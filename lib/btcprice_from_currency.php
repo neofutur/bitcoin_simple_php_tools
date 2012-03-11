@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(__FILE__) . "/lib/mtgoxrate.php" );
+require_once(dirname(__FILE__) . "/mtgoxrate.php" );
 
-function  btcprice_from_currency( $fromcurrency, $fromprice ))
+function  btcprice_from_currency( $fromcurrency, $fromprice )
 {
  $mtgoxrate = mtGoxRate($fromcurrency);
  $btcprice  = $fromprice / $mtgoxrate;

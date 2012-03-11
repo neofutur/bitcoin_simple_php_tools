@@ -33,18 +33,6 @@ if ( !isset( $fromprice ) ) $fromprice=0 ;
 if ( $message != "badprice" )
   $message = btcprice_from_currency( $fromcurrency, $fromprice );
  
-//echo $message;
+echo $message;
 
-$im = @imagecreate(460, 100)
-    or die("Cannot Initialize new GD image stream");
-
-header("Content-type: image/png");
-$image = imagecreatefrompng("background1.png");
-$background_color = imagecolorallocate($image, 231, 247, 215);
-$text_color = imagecolorallocate($image, 100, 100, 100);
-//$text_color2 = imagecolorallocate($image, 0, 0, 225);
-//$shado_color = imagecolorallocate($image, 178,178,178);
-imagestring($image, 15, 190, 8, $message, $text_color);
-imagepng($image);
-imagedestroy($image);
 ?>
