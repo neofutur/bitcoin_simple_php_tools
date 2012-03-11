@@ -24,3 +24,4 @@ the configuration settings ( + new option for getting the page title )
 4. Optionnaly, you can add
    - a "user/footer.php" script that will be added after Casimir's footer
    - a "user/screen.css" stylesheet that will be loaded after Casimir's one
+   - a "user/perso.php" list of links before content
