@@ -2,43 +2,51 @@
 
 /*
 Plugin Name: Bitcoin WordPress
-Description: Add bitcoin stuff to your WordPress blog
+Description: returns a mtgox ticker as text or html
 Author: Fordy
 Version: 1.0
 Revision Date: February 18, 2012
 Requires at least: WP 3.2.1, PHP 5.3
 Tested up to: WP 3.4, PHP 5.3.6
 */
+$typeticker = "html";
 
-getBitcoinPrice();
+if ( isset( $_GET ) )
+ if ( isset ( $_GET['type'] ) )
+  if ( $_GET['type'] == "html" or $_GET['type'] == "text" )
+   $typeticker = $_GET['type'];
 
-function getBitcoinPrice() {
-			 // Fetch the current rate from MtGox
-			$ch = curl_init('https://mtgox.com/api/0/data/ticker.php?Currency=USD');
-			curl_setopt($ch, CURLOPT_REFERER, 'Mozilla/5.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
-			curl_setopt($ch, CURLOPT_USERAGENT, "CakeScript/0.1");
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-	    		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			$mtgoxjson = curl_exec($ch);
-			curl_close($ch);
-               
-			// Decode from an object to array
-			$output_mtgox = json_decode($mtgoxjson);
-			$output_mtgox_1 = get_object_vars($output_mtgox);
-			$mtgox_array = get_object_vars($output_mtgox_1['ticker']);
-			
-			?>
+echo getBitcoinPrice( $typeticker);
 
-					<ul>
-					<li><strong>Last:</strong>&nbsp;&nbsp;<?php echo $mtgox_array['last'];   ?></li>
-					<li><strong>High:</strong>&nbsp;<?php echo $mtgox_array['high'];   ?></li>
-					<li><strong>Low:</strong>&nbsp;&nbsp;<?php echo $mtgox_array['low'];   ?></li>
-					<li><strong>Avg:</strong>&nbsp;&nbsp;&nbsp;<?php echo $mtgox_array['avg'];   ?></li>
-					<li><strong>Vol:</strong>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $mtgox_array['vol'];   ?></li>
-					</ul>
-			<?php
+function getBitcoinPrice( $type="html") 
+{
+	$returndata="";
+	// Fetch the current rate from MtGox
+	$ch = curl_init('https://mtgox.com/api/0/data/ticker.php?Currency=USD');
+	curl_setopt($ch, CURLOPT_REFERER, 'Mozilla/5.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
+	curl_setopt($ch, CURLOPT_USERAGENT, "CakeScript/0.1");
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	$mtgoxjson = curl_exec($ch);
+	curl_close($ch);
+              
+	// Decode from an object to array
+	$output_mtgox = json_decode($mtgoxjson);
+	$output_mtgox_1 = get_object_vars($output_mtgox);
+	$mtgox_array = get_object_vars($output_mtgox_1['ticker']);
+	$avg = round ( $mtgox_array['avg'], 5 );
+	if ( $type == "html" )
+	{
+	 $returndata="<ul><li><strong>Last:</strong>&nbsp;&nbsp;".$mtgox_array['last']."</li><li><strong>High:</strong>&nbsp;".$mtgox_array['high']."</li><li><strong>Low:</strong>&nbsp;&nbsp;".$mtgox_array['low']."</li><li><strong>Avg:</strong>&nbsp;&nbsp;&nbsp;".$mtgox_array['avg']."</li><li><strong>Vol:</strong>&nbsp;&nbsp;&nbsp;&nbsp;".$mtgox_array['vol']."</li></ul>";
+	}
+	else if ( $type == "text" )
+	{
+	 $returndata="LAST: ".$mtgox_array['last']." HIGH: ".$mtgox_array['high']." LOW: ".$mtgox_array['low']." AVG: ".$avg." VOL: ".$mtgox_array['vol']." ";
+	}
+	return $returndata;
+	 
 }
  
 	class bitcoin_widget {

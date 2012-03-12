@@ -1,25 +1,27 @@
 <?php
 
-$tickertype = $_GET['type'];
+ $tickertype = 0;
+
+if ( isset( $_GET ) )
+ if ( isset( $_GET['type'] ) ) $tickertype = $_GET['type'];
 
 if ( ! is_int($tickertype) ) $tickertype=1;
 if ( ! $tickertype || $tickertype =='' ){ $tickertype = 1; }
-if ( $tickertypee <1 || $tickertype > 9 ) { $signtype = 1; }
+if ( $tickertype <1 || $tickertype > 9 ) { $signtype = 1; }
 
-
+$tickertext="phrase";
 
 header("Content-type: image/png");
 $im = @imagecreate(460, 100)
     or die("Cannot Initialize new GD image stream");
-  $image = imagecreatefrompng("sign-".$tickertype.".png");
+
+$image = imagecreatefrompng("tick-".$tickertype.".png");
 
 $background_color = imagecolorallocate($image, 231, 247, 215);
 $text_color = imagecolorallocate($image, 100, 100, 100);
 $text_color2 = imagecolorallocate($image, 0, 0, 225);
 $shado_color = imagecolorallocate($image, 178,178,178);
-imagestring($image, 15, 190, 8,  "Total Members : $stats[total_users]", $text_color);
-imagestring($image, 15, 190, 22,  "Total Topics  : $stats[total_topics]", $text_color2);
-imagestring($image, 15, 190, 38,  "Total Posts   : $stats[total_posts]", $text_color);
+imagestring($image, 20, 20, 20, $tickertext, $text_color);
 imagepng($image);
 imagedestroy($image);
 ?>
