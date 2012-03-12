@@ -1,11 +1,11 @@
 <?php
 
 
-function getBitcoinPrice( $type="html") 
+function getBitcoinPrice( $type="html", $currency="USD") 
 {
 	$returndata="";
 	// Fetch the current rate from MtGox
-	$ch = curl_init('https://mtgox.com/api/0/data/ticker.php?Currency=USD');
+	$ch = curl_init('https://mtgox.com/api/0/data/ticker.php?Currency='.$currency);
 	curl_setopt($ch, CURLOPT_REFERER, 'Mozilla/5.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
 	curl_setopt($ch, CURLOPT_USERAGENT, "CakeScript/0.1");
 	curl_setopt($ch, CURLOPT_HEADER, 0);

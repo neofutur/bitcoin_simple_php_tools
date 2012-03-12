@@ -8,6 +8,6 @@ if ( isset( $_GET ) )
   if ( $_GET['type'] == "html" or $_GET['type'] == "text" )
    $typeticker = $_GET['type'];
 
-echo getBitcoinPrice( $typeticker);
+echo getBitcoinPrice( $typeticker, "USD" );
 
 ?>
