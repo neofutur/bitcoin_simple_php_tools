@@ -2,6 +2,10 @@
 
 function mtGoxRate($fromcurrency="USD")
 {
+	//echo $fromcurrency;
+	if ( $fromcurrency == "usd" ) $fromcurrency = "USD";
+	if ( $fromcurrency == "eur" ) $fromcurrency = "EUR";
+
         $opts = array(
           'http'=> array(
                 'method'=>   "GET",
