@@ -16,12 +16,12 @@ header("Content-type: image/png");
 $im = @imagecreate(460, 100)
     or die("Cannot Initialize new GD image stream");
 
-$image = imagecreatefrompng("tick-".$tickertype.".png");
+$image = imagecreatefrompng("background-440x26.png");
 
 $background_color = imagecolorallocate($image, 231, 247, 215);
 $text_color = imagecolorallocate($image, 255, 255, 0);
 $shado_color = imagecolorallocate($image, 178,178,178);
-imagestring($image, 3, 6, 6, $tickertext, $text_color);
+imagestring($image, 3, 5, 5, $tickertext, $text_color);
 imagepng($image);
 imagedestroy($image);
 ?>

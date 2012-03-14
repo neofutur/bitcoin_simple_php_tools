@@ -60,7 +60,7 @@ $im = @imagecreate(460, 100)
     or die("Cannot Initialize new GD image stream");
 
 header("Content-type: image/png");
-$image = imagecreatefrompng("background-130x26.png");
+$image = imagecreatefrompng("background-134x26.png");
 //$background_color = imagecolorallocate($image, 231, 247, 215);
 $text_color = imagecolorallocate($image, 255, 0, 0);
 //$text_color2 = imagecolorallocate($image, 0, 0, 225);
