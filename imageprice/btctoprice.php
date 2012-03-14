@@ -43,7 +43,7 @@ else $message = "badprice";
 if ( !isset( $fromprice ) ) $fromprice=0 ;
 
 
-if ( $message != "badprice" )
+if ( $message == "" )
   $message = price_to_currency_from_btc( $fromcurrency, $fromprice );
  
 //echo $message;
