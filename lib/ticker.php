@@ -1,7 +1,5 @@
 <?php
-
-
-function getBitcoinPrice( $type="html", $currency="USD") 
+function getBitcoinPrice( $type="html", $geo="line", $currency="USD" ) 
 {
 	$returndata="";
 	// Fetch the current rate from MtGox
@@ -26,7 +24,11 @@ function getBitcoinPrice( $type="html", $currency="USD")
 	}
 	else if ( $type == "text" )
 	{
-	 $returndata="LAST: ".$mtgox_array['last']." HIGH: ".$mtgox_array['high']." LOW: ".$mtgox_array['low']." AVG: ".$avg." VOL: ".$mtgox_array['vol']." ";
+	 //echo $geo;
+	 if ( $geo == "line" )
+	 	$returndata="LAST: ".$mtgox_array['last']." HIGH: ".$mtgox_array['high']." LOW: ".$mtgox_array['low']." AVG: ".$avg." VOL: ".$mtgox_array['vol']." ";
+	 else if ( $geo == "vertical" )
+	 	 $returndata="LAST: ".$mtgox_array['last']."\nHIGH: ".$mtgox_array['high']."\nLOW: ".$mtgox_array['low']."\nAVG: ".$avg."\nVOL: ".$mtgox_array['vol'];
 	}
 	return $returndata;
 	 
