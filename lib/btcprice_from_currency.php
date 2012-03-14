@@ -3,10 +3,12 @@ require_once(dirname(__FILE__) . "/mtgoxrate.php" );
 
 function  btcprice_from_currency( $fromcurrency, $fromprice )
 {
+ $round=3;
+
  $mtgoxrate = mtGoxRate($fromcurrency);
  $btcprice  = $fromprice / $mtgoxrate;
 
- $btcprice = round( $btcprice, 4, PHP_ROUND_HALF_UP );
+ $btcprice = round( $btcprice, $round, PHP_ROUND_HALF_UP );
  $messageline = $fromprice." ".$fromcurrency." = ".$btcprice." BTC ";
  return $messageline;
 }
