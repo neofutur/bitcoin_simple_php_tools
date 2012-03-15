@@ -34,6 +34,7 @@ function cachegetBitcoinPrice( $type="html", $geo="line", $currency="USD" )
 	$high=round ( $mtgox_array['high'], 3);
 	$vol =round ( $mtgox_array['vol'], 3);
 	$avg = round ( $mtgox_array['avg'], 3 );
+	//echo $type;
 	if ( $type == "html" )
 	{
 	 $returndata="<ul><li><strong>Last:</strong>&nbsp;&nbsp;".$last."</li><li><strong>High:</strong>&nbsp;".$high."</li><li><strong>Low:</strong>&nbsp;&nbsp;".$low."</li><li><strong>Avg:</strong>&nbsp;&nbsp;&nbsp;".$avg."</li><li><strong>Vol:</strong>&nbsp;&nbsp;&nbsp;&nbsp;".$vol."</li></ul>";
