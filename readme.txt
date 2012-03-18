@@ -25,3 +25,9 @@ the configuration settings ( + new option for getting the page title )
    - a "user/footer.php" script that will be added after Casimir's footer
    - a "user/screen.css" stylesheet that will be loaded after Casimir's one
    - a "user/perso.php" list of links before content
+
+
+[![endorse](http://api.coderwall.com/neofutur/endorsecount.png)](http://coderwall.com/neofutur)
+
+"!http://api.coderwall.com/neofutur/endorsecount.png!":http://coderwall.com/neofutur
+
