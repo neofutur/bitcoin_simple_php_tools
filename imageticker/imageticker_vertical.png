@@ -1,0 +1,38 @@
+<?php
+require_once ( dirname(__FILE__) . "/../lib/cacheticker.php");
+require_once ( dirname(__FILE__) . "/../lib/expires.php");
+
+ $tickertype = 0;
+
+if ( isset( $_GET ) )
+ if ( isset( $_GET['type'] ) ) $tickertype = $_GET['type'];
+
+if ( ! is_int($tickertype) ) $tickertype=1;
+if ( ! $tickertype || $tickertype =='' ){ $tickertype = 1; }
+if ( $tickertype <1 || $tickertype > 9 ) { $signtype = 1; }
+
+$tickertext= cachegetBitcoinPrice("text","vertical" );
+
+header("Content-type: image/png");
+setExpires(30);
+
+$im = @imagecreate(460, 100)
+    or die("Cannot Initialize new GD image stream");
+
+$image = imagecreatefrompng("./background-102x120.png");
+
+$background_color = imagecolorallocate($image, 231, 247, 215);
+$text_color = imagecolorallocate($image, 255, 255, 0);
+$shado_color = imagecolorallocate($image, 178,178,178);
+
+$stringarray = explode("\n",$tickertext);
+$y=7;
+for ($i=0; $i < count($stringarray); $i++) 
+{
+imagestring($image, 3, 5, $y, $stringarray[$i], $text_color); 
+ $y+=22;
+}
+//imagestring($image, 3, 5, 5, $tickertext, $text_color);
+imagepng($image);
+imagedestroy($image);
+?>

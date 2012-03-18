@@ -1,0 +1,27 @@
+<?php
+require_once ( dirname(__FILE__) . "/../lib/ticker.php");
+
+ $tickertype = 0;
+
+if ( isset( $_GET ) )
+ if ( isset( $_GET['type'] ) ) $tickertype = $_GET['type'];
+
+if ( ! is_int($tickertype) ) $tickertype=1;
+if ( ! $tickertype || $tickertype =='' ){ $tickertype = 1; }
+if ( $tickertype <1 || $tickertype > 9 ) { $signtype = 1; }
+
+$tickertext= getBitcoinPrice("text");
+
+header("Content-type: image/png");
+$im = @imagecreate(460, 100)
+    or die("Cannot Initialize new GD image stream");
+
+$image = imagecreatefrompng("./background-440x26.png");
+
+$background_color = imagecolorallocate($image, 231, 247, 215);
+$text_color = imagecolorallocate($image, 255, 255, 0);
+$shado_color = imagecolorallocate($image, 178,178,178);
+imagestring($image, 3, 5, 5, $tickertext, $text_color);
+imagepng($image);
+imagedestroy($image);
+?>
