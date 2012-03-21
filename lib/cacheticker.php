@@ -2,8 +2,11 @@
 function cachegetBitcoinPrice( $type="html", $geo="line", $currency="USD" ) 
 {
  //echo $geo;
+ if ( $currency == "usd" ) $currency = "USD";
+ if ( $currency == "eur" ) $currency = "EUR";
+
   //decisions, decisions
-  $file="./getBitcoinPrice.txt";
+  $file="./getBitcoinPrice_".$currency.".txt";
   if(file_exists($file) )
   {$current_time = time(); $expire_time = 30; $file_time = filemtime($file); }
   if(file_exists($file) && ($current_time - $expire_time < $file_time)) {

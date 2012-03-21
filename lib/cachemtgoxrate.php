@@ -2,8 +2,13 @@
 
 function cachemtGoxRate($fromcurrency="USD")
 {
+  //echo $fromcurrency;
+  if ( $fromcurrency == "usd" ) $fromcurrency = "USD";
+  if ( $fromcurrency == "eur" ) $fromcurrency = "EUR";
+	
   //decisions, decisions
-  $file="./goxrate.txt";
+  $file="./goxrate_".$fromcurrency.".txt";
+  echo $file;
   $current_time = time(); $expire_time = 30; $file_time = filemtime($file);
   if(file_exists($file) && ($current_time - $expire_time < $file_time)) {
     //echo 'returning from cached file';
@@ -12,9 +17,6 @@ function cachemtGoxRate($fromcurrency="USD")
   else
   {
 
-	//echo $fromcurrency;
-	if ( $fromcurrency == "usd" ) $fromcurrency = "USD";
-	if ( $fromcurrency == "eur" ) $fromcurrency = "EUR";
 
         $opts = array(
           'http'=> array(
