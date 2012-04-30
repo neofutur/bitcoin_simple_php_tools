@@ -8,7 +8,7 @@ function cachemtGoxRate($fromcurrency="USD")
 	
   //decisions, decisions
   $file="./goxrate_".$fromcurrency.".txt";
-  echo $file;
+  //echo $file;
   $current_time = time(); $expire_time = 30; $file_time = filemtime($file);
   if(file_exists($file) && ($current_time - $expire_time < $file_time)) {
     //echo 'returning from cached file';

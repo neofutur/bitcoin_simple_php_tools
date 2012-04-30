@@ -37,19 +37,22 @@ function cachegetBitcoinPrice( $type="html", $geo="line", $currency="USD" )
 	$high=round ( $mtgox_array['high'], 3);
 	$vol =round ( $mtgox_array['vol'], 3);
 	$avg = round ( $mtgox_array['avg'], 3 );
+	$ask = round ( $mtgox_array['sell'], 3 );
+	$bid = round ( $mtgox_array['buy'], 3 );
+
 	//echo $type;
 	if ( $type == "html" )
 	{
-	 $returndata="<ul><li><strong>Last:</strong>&nbsp;&nbsp;".$last."</li><li><strong>High:</strong>&nbsp;".$high."</li><li><strong>Low:</strong>&nbsp;&nbsp;".$low."</li><li><strong>Avg:</strong>&nbsp;&nbsp;&nbsp;".$avg."</li><li><strong>Vol:</strong>&nbsp;&nbsp;&nbsp;&nbsp;".$vol."</li></ul>";
+	 $returndata="<ul><li><strong>Last:</strong>&nbsp;&nbsp;".$last."</li><li><strong>High:</strong>&nbsp;".$high."</li><li><strong>Low:</strong>&nbsp;&nbsp;".$low."</li><li><strong>Avg:</strong>&nbsp;&nbsp;&nbsp;".$avg."</li><li><strong>Vol:</strong>&nbsp;&nbsp;&nbsp;&nbsp;".$vol."</li><li><strong>bid:</strong>&nbsp;&nbsp;&nbsp;".$bid."</li><li><strong>ask:</strong>&nbsp;&nbsp;&nbsp;".$ask."</li></ul>";
 	 //$returndata="<ul><li><strong>Last:</strong>&nbsp;&nbsp;".$mtgox_array['last']."</li><li><strong>High:</strong>&nbsp;".$mtgox_array['high']."</li><li><strong>Low:</strong>&nbsp;&nbsp;".$mtgox_array['low']."</li><li><strong>Avg:</strong>&nbsp;&nbsp;&nbsp;".$mtgox_array['avg']."</li><li><strong>Vol:</strong>&nbsp;&nbsp;&nbsp;&nbsp;".$mtgox_array['vol']."</li></ul>";
 	}
 	else if ( $type == "text" )
 	{
 	 //echo $geo;
 	 if ( $geo == "line" )
-	 	$returndata="LAST: ".$last." HIGH: ".$high." LOW: ".$low." AVG: ".$avg." VOL: ".$vol." ";
+	 	$returndata="LAST: ".$last." HIGH: ".$high." LOW: ".$low." AVG: ".$avg." VOL: ".$vol." BID: ".$bid." ASK: ".$ask." ";
 	 else if ( $geo == "vertical" )
-	 	 $returndata="LAST: ".$last."\nHIGH: ".$high."\nLOW : ".$low."\nAVG : ".$avg."\nVOL : ".$vol;
+	 	 $returndata="LAST: ".$last."\nHIGH: ".$high."\nLOW : ".$low."\nAVG : ".$avg."\nVOL : ".$vol."\nBID: ".$bid."\nASK: ".$ask;
 	}
 	file_put_contents($file,$returndata);
 	return $returndata;
