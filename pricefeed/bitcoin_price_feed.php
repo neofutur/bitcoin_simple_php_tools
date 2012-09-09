@@ -1,6 +1,6 @@
 <?php
 
-require_once ( dirname(__FILE__) . "/../lib/cachemtgoxrate.php");
+
 require_once ( dirname(__FILE__) . "/../lib/feedtools.php");
 
 header("Content-Type: application/rss+xml; charset=ISO-8859-1");
@@ -8,9 +8,13 @@ header("Content-Type: application/rss+xml; charset=ISO-8859-1");
 // feed parameters , currency, delay, format, image
 $currency="USD"; $delay=30; $format="short";$image=false;
 
+if ( isset( $_GET ) )
+ if ( isset ( $_GET['format'] ) )
+   if ( $_GET['format'] == "short" or $_GET['format'] == "fullticker" )
+      $format = $_GET['format'];
+
 // get rates
 
-$ticker=cachemtGoxRate($fromcurrency="USD");
 
 // feed date
 //const string RFC822 = "D, d M y H:i:s O" ;
@@ -18,17 +22,36 @@ $ticker=cachemtGoxRate($fromcurrency="USD");
 $date= date('r');
 $ttl=30;
 $timestamp = time();
+$link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
+
 // input rss header
 
-$rssfeed = feedheader( $date, $ttl);
 
 //if ( $image == true )
 //addfeedimage(imageurl, imagelink,imagetitle)
+//echo $format;
 
 // add data / RSS items
-$title="bitcoin price ".$date." "; $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp"; $description="bitcoin price at date ". $date. " ";
+if ( $format == "short" )
+{
+ require_once ( dirname(__FILE__) . "/../lib/cachemtgoxrate.php");
+ $ticker=cachemtGoxRate($fromcurrency="USD");
+ $title=$ticker;
+ $link .= "&amp;format=short";
+ $description="bitcoin price at date ". $date. " ";
+}
+if ( $format == "fullticker" )
+{
+ require_once ( dirname(__FILE__) . "/../lib/cacheticker.php");
+ $ticker= cachegetBitcoinPrice("text","vertical" );
+ $title=$ticker;
+ $link .= "&amp;format=fullticker";
+ $description="bitcoin price at date ". $date. " ";
+}
 
-$rssfeed .= addfeeditem($title, $link, $description,$timestamp);
+$rssfeed = feedheader( $date, $ttl, $format);
+
+$rssfeed .= addfeeditem($title, $link, $description,$timestamp, $ticker);
 
 // add RSS footer
 $rssfeed .= feedfooter();
