@@ -58,10 +58,10 @@ foreach ( $trades as $trade )
  $tid=$trade->{'tid'};
  $item=$trade->{'item'};
  $currency=$trade->{'price_currency'};
- $title= $datetrade." mtgox ".$tid." : ". $amount. " " . $item." traded at ".$price." ".$currency;
+ $title= $datetrade." mtgox : ". $amount. " " . $item." traded at ".$price." ".$currency;
  $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
  $link .= "&amp;format=short";
- $description="bitcoin price at date ". $date. " ";
+ $description=$datetrade." mtgox ".$tid." : ". $amount. " " . $item." traded at ".$price." ".$currency;
  $rssfeed .= addfeeditem($title, $link, $description,$timestamp, $price );
 }
 // add RSS footer
