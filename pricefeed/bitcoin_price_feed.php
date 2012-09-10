@@ -31,6 +31,10 @@ $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
 //addfeedimage(imageurl, imagelink,imagetitle)
 //echo $format;
 
+$link="http://bitcoin.gw.gd";
+$title="bitcoin price feed";
+$description="RSS feed providing the latest bitcoin price, from mtgox API, provided by http://bitcoin.gw.gd";
+$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description);
 // add data / RSS items
 if ( $format == "short" )
 {
@@ -49,7 +53,6 @@ if ( $format == "fullticker" )
  $description="bitcoin price at date ". $date. " ";
 }
 
-$rssfeed = feedheader( $date, $ttl, $format);
 
 $rssfeed .= addfeeditem($title, $link, $description,$timestamp, $ticker);
 

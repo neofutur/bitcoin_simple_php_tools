@@ -1,5 +1,5 @@
 <?php
-function feedheader( $date, $ttl, $format )
+function feedheader( $date, $ttl, $format, $title, $link,$description )
 {
  $feedheader="";
  $selflink = "http://p.b.gw.gd/pricefeed/bitcoin_price_feed.php?format=".$format;
@@ -9,9 +9,9 @@ function feedheader( $date, $ttl, $format )
 // $feedheader .= '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" >';
  $feedheader .= '<channel>';
  $feedheader .= '<atom:link href="'.$selflink.'" rel="self" type="application/rss+xml" />';
- $feedheader .= '<title>Bitcoin Price Feed</title>';
- $feedheader .= '<link>http://bitcoin.gw.gd</link>';
- $feedheader .= '<description>RSS feed providing the latest bitcoin price, from mtgox API, provided by http://bitcoin.gw.gd</description>';
+ $feedheader .= '<title>'.$title.'</title>';
+ $feedheader .= '<link>'.$link.'http://bitcoin.gw.gd</link>';
+ $feedheader .= '<description>'.$description.'</description>';
  $feedheader .= '<language>en-us</language>';
  $feedheader .= '<lastBuildDate>'.$date.'</lastBuildDate>';
  $feedheader .= '<generator>bitcoin simple php tools</generator>';
@@ -35,7 +35,7 @@ function addfeeditem($title, $link, $description, $timestamp, $ticker )
  $donations = "free service provided by http://bitcoin.gw.gd , donations welcome : 1va4sqj5AFnMYicD7JzhDfxauk5w6Uuug";
  $feeditem="";
  $feeditem .= "<item>";
- $feeditem .= "<title>".$ticker."</title>";
+ $feeditem .= "<title>".$title."</title>";
  $feeditem .= "<link>".$link."</link>";
  $feeditem .= "<description>".$description." . ".$donations."</description>";
 //<content:encoded><![CDATA[<div><font color="#141414"><span style="font-family: Georgia">Let's see here what we need to do and not do to create good articles for our readers:</span></font><br />
