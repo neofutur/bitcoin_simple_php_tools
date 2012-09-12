@@ -6,7 +6,7 @@ function cachegetBitcoinPrice( $type="html", $geo="line", $currency="USD" )
  if ( $currency == "eur" ) $currency = "EUR";
 
   //decisions, decisions
-  $file= dirname(__FILE__) . "/../cache/getBitcoinPrice_".$type."_".$currency.".txt";
+  $file= dirname(__FILE__) . "/../cache/getBitcoinPrice_".$type."_".$geo."_".$currency.".txt";
   
   $current_time = time(); $expire_time = 30;
   if(file_exists($file) )
