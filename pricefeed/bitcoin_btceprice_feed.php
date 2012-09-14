@@ -41,7 +41,7 @@ if ( $format == "short" )
  require_once ( dirname(__FILE__) . "/../lib/cachebtcerate.php");
  $ticker=cacheBtceRate();
  $title=$ticker;
- $link .= "&amp;format=short";
+ //$link .= "&amp;format=short";
  $description="bitcoin price at date ". $date. " ";
 }
 if ( $format == "fullticker" )

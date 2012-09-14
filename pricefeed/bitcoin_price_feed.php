@@ -39,7 +39,7 @@ $rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description);
 if ( $format == "short" )
 {
  require_once ( dirname(__FILE__) . "/../lib/cachemtgoxrate.php");
- $ticker=cachemtGoxRate($fromcurrency="USD");
+ $ticker=cachemtGoxRate($fromcurrency="USD", "last_local");
  $title=$ticker;
  $link .= "&amp;format=short";
  $description="bitcoin price at date ". $date. " ";
@@ -49,7 +49,7 @@ if ( $format == "fullticker" )
  require_once ( dirname(__FILE__) . "/../lib/cacheticker.php");
  $ticker= cachegetBitcoinPrice("text","vertical" );
  $title=$ticker;
- $link .= "&amp;format=fullticker";
+ //$link .= "&amp;format=fullticker";
  $description="bitcoin price at date ". $date. " ";
 }
 

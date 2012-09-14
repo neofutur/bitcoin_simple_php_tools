@@ -1,6 +1,6 @@
 <?php
 
-function cachemtGoxRate($fromcurrency="USD")
+function cachemtGoxRate($fromcurrency="USD", $type="avg" )
 {
   //echo $fromcurrency;
   if ( $fromcurrency == "usd" ) $fromcurrency = "USD";
@@ -27,7 +27,8 @@ function cachemtGoxRate($fromcurrency="USD")
         $context = stream_context_create($opts);
         $json = file_get_contents('https://mtgox.com/api/0/data/ticker.php?Currency='.$fromcurrency, false, $context);
         $jdec = json_decode($json);
-        $rate = $jdec->{'ticker'}->{'avg'};
+	if ( $type == "avg" ) $rate = $jdec->{'ticker'}->{'avg'};
+	if ( $type == "last_local" ) $rate = $jdec->{'ticker'}->{'last_local'};
 	file_put_contents($file,$rate);
         return $rate;
   }
