@@ -1,6 +1,6 @@
 <?php
 
-function cachemtBtceRate()
+function cacheBtceRate()
 {
 	
   $file=dirname(__FILE__) . "/../cache/btcerate.txt";
