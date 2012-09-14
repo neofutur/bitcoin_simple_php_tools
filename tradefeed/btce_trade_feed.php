@@ -44,7 +44,7 @@ if ( $format == "short" )
  $trades=cacheBtceTrades( $grouptrades, $since );
 }
 
-
+$biggest_tid=$tid;
 //var_dump($trades);exit;
 //foreach line
 foreach ( $trades as $trade )
@@ -54,6 +54,7 @@ foreach ( $trades as $trade )
  $price=$trade->{'price'};
  $amount=$trade->{'amount'};
  $tid=$trade->{'tid'};
+ if ($tid >$biggest_tid ) $biggest_tid = $tid;
  $item=$trade->{'item'};
  $currency=$trade->{'price_currency'};
  $title= $datetrade." btc-e : ". $amount. " " . $item." traded at ".$price." ".$currency;
@@ -66,7 +67,7 @@ foreach ( $trades as $trade )
 $rssfeed .= feedfooter();
 //echo $tid;exit;
 // update last trade_id
-file_put_contents($sincefile, $tid );
+file_put_contents($sincefile, $biggest_tid );
 
 // echo the full RSS feed
 echo $rssfeed;

@@ -52,7 +52,7 @@ function cacheBtceTrades( $grouptrades=false, $since )
   //var_dump($jdec); exit;
   //$trade_array = $jdec->{'return'};
   $trade_array = array_filter ( $trade_array, "ignore_since" );
-  var_dump($trade_array); exit;
+  //var_dump($trade_array); exit;
   if ( $grouptrades == true ) $trade_array = grouptrades($trade_array);
   //$fileContents = '<?php $trade_array = '. var_export($trade_array, true) ."; ?".">";
   $fileContents = serialize($trade_array);
@@ -66,7 +66,7 @@ function ignore_since($trade_array )
 {
  global $since;
  //echo $trade_array->tid; exit;
- if ($trade_array->tid < $since ) return false;
+ if ($trade_array->tid <= $since ) return false;
  else return true;
 
 }
