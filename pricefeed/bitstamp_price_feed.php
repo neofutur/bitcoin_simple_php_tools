@@ -23,8 +23,8 @@ $date= date('r');
 $ttl=30;
 $timestamp = time();
 $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
-$exchangename=" mtgox ";
-$exchangelink="https://mtgox.com";
+$exchangename=" bitstamp ";
+$exchangelink="https://bitstamp.net";
 
 // input rss header
 
@@ -40,8 +40,8 @@ $rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description);
 // add data / RSS items
 if ( $format == "short" )
 {
- require_once ( dirname(__FILE__) . "/../lib/cachemtgoxrate.php");
- $ticker=cachemtGoxRate($fromcurrency="USD", "last_local");
+ require_once ( dirname(__FILE__) . "/../lib/cachebitstamprate.php");
+ $ticker=cacheBitstampRate($fromcurrency="USD", "last");
  $title=$ticker;
  //$link .= "&amp;format=short";
  $description="bitcoin price at date ". $date. " ";
