@@ -15,10 +15,12 @@ if ( isset( $_GET ) )
 
 $fromcurrency="USD";
 
+$exchangename="intersango";
+$echangelink="https://intersango.com";
 // feed date
 //const string RFC822 = "D, d M y H:i:s O" ;
-$sincefile=dirname(__FILE__) . "/../cache/lasttradeid_bitstamp_".$fromcurrency.".txt";
-$sincetimefile=dirname(__FILE__) . "/../cache/lasttime_bitstamp_".$fromcurrency.".txt";
+$sincefile=dirname(__FILE__) . "/../cache/lasttradeid_".$exchangename."_".$fromcurrency.".txt";
+$sincetimefile=dirname(__FILE__) . "/../cache/lasttime_".$exchangename."_".$fromcurrency.".txt";
 $since=file_get_contents($sincefile);
 $sincetime=file_get_contents($sincetimefile);
 
@@ -33,8 +35,6 @@ $ttl=30;
 $timestamp = time();
 $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
 $grouptrades=false;
-$exchangename="bitstamp";
-$echangelink="https://www.bitstamp.net";
 
 // input rss header
 
@@ -50,8 +50,8 @@ $rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description );
 // add data / RSS items
 if ( $format == "short" )
 {
- require_once ( dirname(__FILE__) . "/../lib/cachebitstamptrades.php");
- $trades=cacheBitstampTrades($fromcurrency="USD", $grouptrades, $since, $timedelta );
+ require_once ( dirname(__FILE__) . "/../lib/cache".$exchangename."trades.php");
+ $trades=cacheIntersangoTrades($fromcurrency="USD", $grouptrades, $since, $timedelta );
 }
 
 
@@ -70,7 +70,7 @@ foreach ( $trades as $trade )
  $title= $datetrade." mtgox : ". $amount. " " . $item." traded at ".$price." ".$currency;
  $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
  $link .= "&amp;format=short";
- $description=$datetrade." mtgox ".$tid." : ". $amount. " " . $item." traded at ".$price." ".$currency;
+ $description=$datetrade." ".$exchangename." ".$tid." : ". $amount. " " . $item." traded at ".$price." ".$currency;
  $rssfeed .= addfeeditem($title, $link, $description,$timestamp, $price );
 }
 // add RSS footer
