@@ -41,7 +41,7 @@ if ( $format == "short" )
  require_once ( dirname(__FILE__) . "/../lib/cachemtgoxrate.php");
  $ticker=cachemtGoxRate($fromcurrency="USD", "last_local");
  $title=$ticker;
- $link .= "&amp;format=short";
+ //$link .= "&amp;format=short";
  $description="bitcoin price at date ". $date. " ";
 }
 if ( $format == "fullticker" )

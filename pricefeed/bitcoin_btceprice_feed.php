@@ -39,7 +39,7 @@ $rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description);
 if ( $format == "short" )
 {
  require_once ( dirname(__FILE__) . "/../lib/cachebtcerate.php");
- $ticker=cacheBtceRate();
+ $ticker=cacheBtceRate("last");
  $title=$ticker;
  //$link .= "&amp;format=short";
  $description="bitcoin price at date ". $date. " ";
