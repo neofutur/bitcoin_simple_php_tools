@@ -28,7 +28,7 @@ function cacheIntersangoTrades($fromcurrency="USD", $grouptrades=false, $since, 
    'method'=>   "GET",
    'user_agent'=>    "MozillaXYZ/1.0"));
   $context = stream_context_create($opts);
-  $url_api = 'https://www.bitstamp.net/api/transactions?timedelta='.$timedelta;
+  $url_api = 'https://intersango.com/api/trades.php?currency_pair_id=3';
   //echo $url_api;exit;
   $json = file_get_contents($url_api, false, $context);
   $trade_array = json_decode($json);

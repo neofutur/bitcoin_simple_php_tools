@@ -53,7 +53,7 @@ if ( $format == "short" )
  require_once ( dirname(__FILE__) . "/../lib/cache".$exchangename."trades.php");
  $trades=cacheIntersangoTrades($fromcurrency="USD", $grouptrades, $since, $timedelta );
 }
-
+//var_dump($trades);exit;
 
 //var_dump($trades);exit;
 //foreach line
