@@ -12,10 +12,8 @@
 <body>
 <?php include("header.php");
 require_once ( dirname(__FILE__) . "/lib/cacheticker.php");
-
 ?>
 
-<h1> welcome on price.bitcoin.gw.gd, many useful php tools for bitcoin users and traders</h1>
 <h2>RSS feeds</h2>
 <table>
 <tr> <td> Bitcoin Ticker RSS feed, short format ( from mtgox, cached 30 seconds ) </td>
@@ -31,8 +29,8 @@ require_once ( dirname(__FILE__) . "/lib/cacheticker.php");
 </table>
 <h2> Image tools </h2>
 <table>
-<tr> <td>imageticker ( horizontal ), cached 30 seconds )</td><td><img src="http://p.b.gw.gd/it/it.png" alt="Bitcoin ticker" /></td><td><a href="http://p.b.gw.gd/it/it.png">Bitcoin ticker</a></td></tr>
-<tr> <td>imageticker ( vertical ), cached 30 seconds )</td><td><img src="http://p.b.gw.gd/it/iv.png" alt="Bitcoin ticker" /></td><td><a href="http://p.b.gw.gd/it/iv.png">Bitcoin ticker</a></td></tr>
+<tr> <td>imageticker ( horizontal ), cached 30 seconds )</td><td><img src="http://p.b.gw.gd/it/it.php" alt="Bitcoin ticker" /></td><td><a href="http://p.b.gw.gd/it/it.png">Bitcoin ticker</a></td></tr>
+<tr> <td>imageticker ( vertical ), cached 30 seconds )</td><td><img src="http://p.b.gw.gd/it/iv.php" alt="Bitcoin ticker" /></td><td><a href="http://p.b.gw.gd/it/iv.png">Bitcoin ticker</a></td></tr>
 <tr> <td>Convert FIAT to BTC price</td><td><img src="http://p.b.gw.gd/ip/b.php?u=1" alt="1 usd converted to btc" />&nbsp;&nbsp;<img src="http://p.b.gw.gd/ip/b.php?u=33" alt="33 usd converted to btc" /></td><td><a href="http://p.b.gw.gd/ip/b.php?usdprice=200">convert price to btc </a></td></tr>
 <tr> <td>Convert BTC to FIAT price</td><td><img src="http://p.b.gw.gd/ip/p.php?b=1&amp;c=usd" alt="1 btc converted to USD" />&nbsp;&nbsp;<img src="http://p.b.gw.gd/ip/p.php?b=2&amp;c=eur" alt="2 btc converted to EUR" /></td><td><a href="http://p.b.gw.gd/ip/p.php?b=1&amp;c=usd">convert btc to FIAT price</a></td></tr>
 
