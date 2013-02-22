@@ -9,7 +9,9 @@ grouping trades in trade feed
 undocumetned btc-e api : 
 https://btc-e.com/api/2/btc_rur/ticker
 
-alerts feed ( volume, tanking, rally )
+alerts feed ( volume, tanking, rally, choosen news )
+
+recurrent donations ( weekly, monthly )
 
 exchanges
 virwox, btcn, virtex, cbx, btc24, cryptox
