@@ -37,8 +37,8 @@ require_once ( dirname(__FILE__) . "/lib/cacheticker.php");
 </table>
 <h2> Text and HTML tools</h2>
 <table>
-<tr> <td>EUR ticker in HTML format</td><td><?php require "./ti/ticker_eur_btc.php" ?></td><td><a href="http://p.b.gw.gd/ti/ticker_eur_btc.php">HTML BTC/EUR ticker</a> </td></tr>
-<tr> <td>USD ticker in HTML format</td><td><?php require "./ti/ticker_usd_btc.php" ?></td><td><a href="http://p.b.gw.gd/ti/ticker_usd_btc.php">HTML BTC/USD ticker</a> </td></tr>
+<tr> <td>EUR ticker in HTML format</td><td><?php require "tickers/ticker_eur_btc.php" ?></td><td><a href="http://p.b.gw.gd/ti/ticker_eur_btc.php">HTML BTC/EUR ticker</a> </td></tr>
+<tr> <td>USD ticker in HTML format</td><td><?php require "tickers/ticker_usd_btc.php" ?></td><td><a href="http://p.b.gw.gd/ti/ticker_usd_btc.php">HTML BTC/USD ticker</a> </td></tr>
 <tr> <td>EUR ticker in TEXT format</td><td><?php echo cachegetBitcoinPrice( "text", "line", "EUR" ); ?></td><td><a href="http://p.b.gw.gd/ti/ticker_eur_btc.php?type=text">TEXT BTC/EUR ticker</a> </td></tr>
 <tr> <td>USD ticker in TEXT format</td><td><?php echo cachegetBitcoinPrice( "text", "line", "USD" ); ?></td><td><a href="http://p.b.gw.gd/ti/ticker_usd_btc.php">TEXT BTC/USD ticker</a> </td></tr>
 </table>
