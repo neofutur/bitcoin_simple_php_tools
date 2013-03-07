@@ -1,8 +1,8 @@
 <?php
-function feedheader( $date, $ttl, $format, $title, $link,$description )
+function feedheader( $date, $ttl, $format, $title, $link, $description, $self )
 {
  $feedheader="";
- $selflink = "http://p.b.gw.gd/pricefeed/bitcoin_price_feed.php?format=".$format;
+ $selflink = $self;
 
  $feedheader  = '<?xml version="1.0" encoding="UTF-8"?>';
  $feedheader .= '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" >';

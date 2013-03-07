@@ -37,7 +37,9 @@ $grouptrades=false;
 $title="bitcoin trade feed";
 $link="http://bitcoin.gw.gd";
 $description="RSS feed providing the latest bitcoin trades, from mtgox API, feed updated every 30 seconds, provided by http://bitcoin.gw.gd";
-$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description );
+$self="http://p.b.gw.gd/tf/grouped_mtgox_trade_feed.php";
+
+$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description, $self );
 
 // add data / RSS items
 if ( $format == "short" )
