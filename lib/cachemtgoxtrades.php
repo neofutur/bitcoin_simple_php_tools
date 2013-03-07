@@ -31,6 +31,8 @@ function cachemtGoxTrades($fromcurrency="USD", $grouptrades=false, $since )
   $url_api = 'https://mtgox.com/api/1/BTCUSD/trades?since='.$since;
   //echo $url_api;exit;
   $json = file_get_contents($url_api, false, $context);
+  if ( $json == FALSE ) return NULL;
+
   $jdec = json_decode($json);
   //var_dump($jdec); exit;
   $trade_array = $jdec->{'return'};
