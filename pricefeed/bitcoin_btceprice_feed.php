@@ -34,7 +34,8 @@ $link="http://p.b.gw.gd/ti/miniticker.php?date=$timestamp";
 $link="http://bitcoin.gw.gd";
 $title="bitcoin price feed";
 $description="RSS feed providing the latest bitcoin price, from btc-e API, provided by http://bitcoin.gw.gd";
-$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description);
+$self="http://p.b.gw.gd/pf/bitcoin_btceprice_feed.php";
+$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description, $self);
 // add data / RSS items
 if ( $format == "short" )
 {

@@ -35,7 +35,8 @@ $grouptrades=false;
 $title="bitcoin btc-e trade feed";
 $link="http://bitcoin.gw.gd";
 $description="RSS feed providing the latest bitcoin trades, from btc-e API, feed updated every 30 seconds, provided by http://bitcoin.gw.gd";
-$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description );
+$self="http://p.b.gw.gd/tf/btce_trade_feed.php";
+$rssfeed = feedheader( $date, $ttl, $format, $title, $link,$description, $self );
 
 // add data / RSS items
 if ( $format == "short" )
