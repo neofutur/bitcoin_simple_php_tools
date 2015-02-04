@@ -5,7 +5,7 @@ function  btcprice_from_currency( $fromcurrency, $fromprice )
 {
  $round=3;
 
- $mtgoxrate = mtGoxRate($fromcurrency);
+ $mtgoxrate = cachemtGoxRate($fromcurrency);
  $btcprice  = $fromprice / $mtgoxrate;
 
  $btcprice = round( $btcprice, $round, PHP_ROUND_HALF_UP );
